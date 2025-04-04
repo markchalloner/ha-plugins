@@ -47,6 +47,14 @@ def get_name_server(raw_name_server: str):
     return name_server_without_empty
 
 
+def get_stun_server(raw_stun_server: str):
+    stun_server = [ss.strip() for ss in raw_stun_server.split(",")]
+    stun_server_without_empty = [ss for ss in stun_server if ss]
+    if stun_server_without_empty:
+        log(None, 'Setting stun server: %s' % stun_server)
+    return stun_server_without_empty
+
+
 def get_cache_dir(raw_cache_dir: str) -> Optional[str]:
     if not raw_cache_dir:
         log(None, 'No cache directory configured.')
@@ -62,11 +70,13 @@ def main():
     load_dotenv()
     import config
     name_server = get_name_server(config.NAME_SERVER)
+    stun_server = get_stun_server(config.STUN_SERVER)
     cache_dir = get_cache_dir(config.CACHE_DIR)
     endpoint_config = sip.MyEndpointConfig(
         port=utils.convert_to_int(config.PORT, 5060),
         log_level=utils.convert_to_int(config.LOG_LEVEL, 5),
-        name_server=name_server
+        name_server=name_server,
+        stun_server=stun_server
     )
     account_configs = {
         1: account.MyAccountConfig(

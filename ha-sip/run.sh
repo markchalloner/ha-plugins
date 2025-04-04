@@ -10,6 +10,7 @@ if test -f "$HOME_ASSISTANT_CONFIG_FILE"; then
     export PORT="$(bashio::config 'sip_global.port')"
     export LOG_LEVEL="$(bashio::config 'sip_global.log_level')"
     export NAME_SERVER="$(bashio::config 'sip_global.name_server')"
+    export STUN_SERVER="$(bashio::config 'sip_global.stun_server')"
     export CACHE_DIR="$(bashio::config 'sip_global.cache_dir')"
 
     export SIP1_ENABLED="$(bashio::config 'sip.enabled')"

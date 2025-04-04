@@ -4,10 +4,11 @@ from log import log
 
 
 class MyEndpointConfig(object):
-    def __init__(self, port: int, log_level: int, name_server: list[str]):
+    def __init__(self, port: int, log_level: int, name_server: list[str], stun_server: list[str]):
         self.port = port
         self.log_level = log_level
         self.name_server = name_server
+        self.stun_server = stun_server
 
 
 def create_endpoint(config: MyEndpointConfig) -> pj.Endpoint:
@@ -19,6 +20,11 @@ def create_endpoint(config: MyEndpointConfig) -> pj.Endpoint:
         for ns in config.name_server:
             nameserver.append(ns)
         ep_cfg.uaConfig.nameserver = nameserver
+    if config.stun_server:
+        stunserver = pj.StringVector()
+        for ss in config.stun_server:
+            stunserver.append(ss)
+        ep_cfg.uaConfig.stunServer = stunserver
     ep_cfg.logConfig.level = config.log_level
     end_point = pj.Endpoint()
     end_point.libCreate()

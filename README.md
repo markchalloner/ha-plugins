@@ -29,6 +29,7 @@ sip_global:
     port: 5060
     log_level: 5 # log level of pjsip library
     name_server: '' # comma separated list of name servers, must be set if sip server must be resolved via SRV record
+    stun_server: '' # comma separated list of stun servers, must be set if Home Assistant is behind NAT
     cache_dir: '/config/audio_cache' # directory to cache TTS messages or converted audio files. Must be inside /config and existing
 sip:
     enabled: true

@@ -5,6 +5,7 @@ COMMAND_SOURCE = os.environ.get('COMMAND_SOURCE', 'stdin')
 PORT = os.environ.get('PORT', '')
 LOG_LEVEL = os.environ.get('LOG_LEVEL', '')
 NAME_SERVER = os.environ.get('NAME_SERVER', '')
+STUN_SERVER = os.environ.get('STUN_SERVER', '')
 CACHE_DIR = os.environ.get('CACHE_DIR', '')
 
 SIP1_ENABLED = os.environ.get('SIP1_ENABLED', '')
